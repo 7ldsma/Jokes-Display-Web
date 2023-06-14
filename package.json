@@ -1,0 +1,23 @@
+{
+  "name": "sprint-5-typescript",
+  "version": "1.0.0",
+  "description": "",
+  "main": "salida.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/7ldsma/Typescript-Sprint5.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/7ldsma/Typescript-Sprint5/issues"
+  },
+  "homepage": "https://github.com/7ldsma/Typescript-Sprint5#readme",
+  "dependencies": {
+    "bootstrap": "^5.3.0"
+  }
+}
