@@ -18,8 +18,8 @@ function getJokes() {
             });
             const data = yield response.json();
             const joke = data.joke;
-            console.log(data);
-            console.log(joke);
+            let broma = document.getElementById('joke');
+            broma.textContent = joke;
         }
         catch (error) {
             console.error('Error al obtener la broma', error);

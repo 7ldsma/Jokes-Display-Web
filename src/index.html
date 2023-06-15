@@ -7,16 +7,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="main.css">
-    <script src="../src/bootstrap.bundle.min.js"></script>
+    <script src=""></script>
 </head>
 
 <body>
 
+    <div class="container">
+        <nav class="navbar navbar-expand-lg my-5 bg-white">
+            <a href="#hero" class="navbar-brand">
+                <img src="" alt="logo-bookmark">
+            </a>
+
+        </nav>
+
+        <!-- HERO SECTION -->
+
+        <section id="hero">
+            <div class="row justify-content-center">
+                <div class="col-sm-12 col-md-7 col-xl-5 align-items-center">
+                    <div class="figureright rounded-pill">
+                        <h1 id='joke'></h1>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-sm-12 col-md-7 col-xl-5 align-items-center">
+                    <button class="btn btn-secondary" onclick="getJokes()">Siguiente</button>
+                </div>
+            </div>
+
+        </section>
 
 
 
-    <script src="salida.js">
-    </script>
+
+        <script src="../salida.js"></script>
 </body>
 
 </html>

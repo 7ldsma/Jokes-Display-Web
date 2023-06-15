@@ -1,4 +1,7 @@
 
+
+
+
 async function getJokes(){
 
     try {
@@ -11,8 +14,8 @@ async function getJokes(){
 
         const data = await response.json();
         const joke = data.joke;
-        console.log(data);
-        console.log(joke);  
+        let broma:any = document.getElementById('joke');
+        broma.textContent = joke;
     } catch (error) {
         console.error('Error al obtener la broma', error);
     }
