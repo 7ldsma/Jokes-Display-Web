@@ -12031,4 +12031,7 @@ textarea.form-control-lg {
   .d-print-none {
     display: none !important;
   }
+}
+.btn {
+  padding: 10px 32px 10px 32px;
 }/*# sourceMappingURL=main.css.map */
