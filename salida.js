@@ -9,6 +9,40 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 let jokesReport = [];
+function getWeather(ciudad) {
+    return __awaiter(this, void 0, void 0, function* () {
+        try {
+            const apiKey = "09aee6622aa7a4dad63e15855ee6dd0f";
+            const urlWeather = `https://api.openweathermap.org/data/2.5/weather?q=${ciudad}&appid=${apiKey}`;
+            const response = yield fetch(urlWeather, {
+                headers: {}
+            });
+            const data = yield response.json();
+            //const mainWeather = data.weather[0].main;
+            console.log(data);
+            //console.log(mainWeather);
+            const descriptionWeather = data.weather[0].description;
+            console.log(descriptionWeather);
+            const temperatureKelvin = Number(data.main.temp);
+            const tempCelsius = temperatureKelvin - 273.15;
+            console.log(tempCelsius);
+            //let mWelement = document.getElementById('mainWeather');
+            let dWelement = document.getElementById('descriptionWeather');
+            let tempW = document.getElementById('temperature');
+            if (dWelement && tempW) {
+                //mWelement.textContent = mainWeather;
+                dWelement.textContent = descriptionWeather;
+                tempW.textContent = `${tempCelsius.toFixed(1).toString()} °C`;
+            }
+            else {
+                console.error('Element not found');
+            }
+        }
+        catch (error) {
+            console.error('weather is missing', error);
+        }
+    });
+}
 function getJokes() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
@@ -59,3 +93,4 @@ function addScore(score) {
     };
     console.log(jokesReport);
 }
+getWeather('Barcelona');
