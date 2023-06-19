@@ -11,6 +11,7 @@ interface ChuckNorris {
     date?: string;
 }
 
+
 let jokesReport: Joke[] = [];
 
 
@@ -92,7 +93,6 @@ async function getChuckJokes(){
         console.log(chuckJoke);
 
         return chuckJoke;
-        // addJoke(chuckJoke);
 
     } catch (error) {
         console.error('Error al obtener la broma', error);
@@ -172,3 +172,32 @@ function addScore(score:number){
 getChuckJokes();
 
 getWeather('Barcelona');
+
+
+
+var fondos = [
+    '../src/media/fondo1.png',
+    '../src/media/fondo2.png',
+    '../src/media/fondo3.png',
+    '../src/media/fondo4.png',
+    '../src/media/fondo5.png'
+];
+
+var background = document.body as HTMLDivElement;
+var currentIndex = 0;
+
+function changeBackground() {
+
+    background.style.opacity = "0";
+
+    setTimeout(function() {
+        background.style.backgroundImage = "url(" + fondos[currentIndex] + ")";
+        currentIndex = (currentIndex + 1) % fondos.length;
+        
+        background.style.opacity = "1";
+    }, 500);
+
+
+}
+
+setInterval(changeBackground, 3000);

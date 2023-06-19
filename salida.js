@@ -53,10 +53,7 @@ function getJokes() {
             });
             const data = yield response.json();
             const joke = data.joke;
-            let broma = document.getElementById('joke');
-            broma.textContent = joke;
-            showButtons();
-            addJoke(joke);
+            return joke;
         }
         catch (error) {
             console.error('Error al obtener la broma', error);
@@ -74,7 +71,7 @@ function getChuckJokes() {
             const data = yield response.json();
             const chuckJoke = data.value;
             console.log(chuckJoke);
-            addJoke(chuckJoke);
+            return chuckJoke;
         }
         catch (error) {
             console.error('Error al obtener la broma', error);
@@ -84,18 +81,23 @@ function getChuckJokes() {
 function getRandomJokes() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            const dadJoke = yield getJokes();
-            const chukNorrisJoke = yield getChuckJokes();
-            const jokesCombo = [dadJoke, chukNorrisJoke];
-            const rindex = Math.floor(Math.random() * jokesCombo.length);
-            const randomJoke = jokesCombo[rindex];
+            const randomIndex = Math.floor(Math.random() * 2);
+            let jokeToShow;
+            if (randomIndex === 0) {
+                jokeToShow = yield getJokes();
+            }
+            else {
+                jokeToShow = yield getChuckJokes();
+            }
             const jokeElement = document.getElementById('joke');
-            // jokeElement.textContent = randomJoke;
-            // const joke = data.joke;
-            //         // let broma:any = document.getElementById('joke');
-            //         // broma.textContent = joke;
-            //         // showButtons();
-            //         // addJoke(joke);
+            if (jokeElement) {
+                jokeElement.textContent = jokeToShow;
+                showButtons();
+                addJoke(jokeToShow);
+            }
+            else {
+                console.error('Element not found');
+            }
         }
         catch (error) {
             console.error('Error al obtener la broma', error);
@@ -134,3 +136,21 @@ function addScore(score) {
 }
 getChuckJokes();
 getWeather('Barcelona');
+var fondos = [
+    '../src/media/fondo1.png',
+    '../src/media/fondo2.png',
+    '../src/media/fondo3.png',
+    '../src/media/fondo4.png',
+    '../src/media/fondo5.png'
+];
+var background = document.body;
+var currentIndex = 0;
+function changeBackground() {
+    background.style.opacity = "0";
+    setTimeout(function () {
+        background.style.backgroundImage = "url(" + fondos[currentIndex] + ")";
+        currentIndex = (currentIndex + 1) % fondos.length;
+        background.style.opacity = "1";
+    }, 500);
+}
+setInterval(changeBackground, 3000);

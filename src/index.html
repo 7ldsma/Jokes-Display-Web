@@ -11,12 +11,12 @@
 
 <body>
 
-    <div class="container">
-        <nav class="navbar navbar-expand-lg my-5 bg-white dflex justify-content-start">
+    <div class="container" id="fondos">
+        <nav class="navbar navbar-expand-lg my-5 bg-white dflex justify-content-start bg-transparent">
 
-            <h2 id="temperature"></h2>
+            <h2 class="text-light" id="temperature"></h2>
             <!-- <h4 id="mainWeather"></h4> -->
-            <h4 class="mx-4" id="descriptionWeather"></h4>
+            <h4 class="mx-4 text-light" id="descriptionWeather"></h4>
         </nav>
 
         <!-- HERO SECTION -->
@@ -35,8 +35,7 @@
             </div>
             <div class="row justify-content-center">
                 <div class="col-sm-12 col-md-7 col-xl-5 text-center">
-                    <button class="btn btn-secondary" onclick="getJokes()">Siguiente</button>
-                    <button class="btn btn-secondary" onclick="getChuckJokes()">Chuck</button>
+                    <button class="btn btn-secondary" onclick="getRandomJokes()">Siguiente</button>
 
                 </div>
             </div>
