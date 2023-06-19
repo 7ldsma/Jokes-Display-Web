@@ -5,12 +5,18 @@ interface Joke {
     date?: string;
 }
 
+interface ChuckNorris {
+    value: string;
+    score?: number;
+    date?: string;
+}
+
 let jokesReport: Joke[] = [];
 
 
 async  function getWeather(ciudad:string){
     try {
-        const apiKey:string = "09aee6622aa7a4dad63e15855ee6dd0f"
+        const apiKey = "09aee6622aa7a4dad63e15855ee6dd0f"
         const urlWeather:string = `https://api.openweathermap.org/data/2.5/weather?q=${ciudad}&appid=${apiKey}`
         const response = await fetch(urlWeather,{
             headers:{
@@ -61,8 +67,10 @@ async function getJokes(){
 
         const data = await response.json();
         const joke = data.joke;
+
         let broma:any = document.getElementById('joke');
         broma.textContent = joke;
+
         showButtons();
         addJoke(joke);
     } catch (error) {
@@ -70,6 +78,56 @@ async function getJokes(){
     }
 
 }
+
+
+async function getChuckJokes(){
+
+    try {
+
+        const response = await fetch('https://api.chucknorris.io/jokes/random', {
+            headers: {
+                'Accept': 'application/json',
+              }
+        });
+
+        const data = await response.json();
+        const chuckJoke = data.value;
+        console.log(chuckJoke);
+
+        addJoke(chuckJoke);
+
+    } catch (error) {
+        console.error('Error al obtener la broma', error);
+    }
+
+}
+
+async function getRandomJokes(){
+
+    try {
+
+        const dadJoke = await getJokes();
+        const chukNorrisJoke = await getChuckJokes();
+
+        const jokesCombo = [dadJoke, chukNorrisJoke]
+
+        const rindex = Math.floor(Math.random() * jokesCombo.length);
+        const randomJoke = jokesCombo[rindex];
+    
+        const jokeElement = document.getElementById('joke');
+        // jokeElement.textContent = randomJoke;
+        // const joke = data.joke;
+
+//         // let broma:any = document.getElementById('joke');
+//         // broma.textContent = joke;
+//         // showButtons();
+//         // addJoke(joke);
+    } catch (error) {
+        console.error('Error al obtener la broma', error);
+    }
+
+}
+
 
 
 function showButtons(){
@@ -111,5 +169,6 @@ function addScore(score:number){
     console.log(jokesReport);
 
 }
+getChuckJokes();
 
 getWeather('Barcelona');

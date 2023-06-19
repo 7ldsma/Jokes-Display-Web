@@ -63,6 +63,45 @@ function getJokes() {
         }
     });
 }
+function getChuckJokes() {
+    return __awaiter(this, void 0, void 0, function* () {
+        try {
+            const response = yield fetch('https://api.chucknorris.io/jokes/random', {
+                headers: {
+                    'Accept': 'application/json',
+                }
+            });
+            const data = yield response.json();
+            const chuckJoke = data.value;
+            console.log(chuckJoke);
+            addJoke(chuckJoke);
+        }
+        catch (error) {
+            console.error('Error al obtener la broma', error);
+        }
+    });
+}
+function getRandomJokes() {
+    return __awaiter(this, void 0, void 0, function* () {
+        try {
+            const dadJoke = yield getJokes();
+            const chukNorrisJoke = yield getChuckJokes();
+            const jokesCombo = [dadJoke, chukNorrisJoke];
+            const rindex = Math.floor(Math.random() * jokesCombo.length);
+            const randomJoke = jokesCombo[rindex];
+            const jokeElement = document.getElementById('joke');
+            // jokeElement.textContent = randomJoke;
+            // const joke = data.joke;
+            //         // let broma:any = document.getElementById('joke');
+            //         // broma.textContent = joke;
+            //         // showButtons();
+            //         // addJoke(joke);
+        }
+        catch (error) {
+            console.error('Error al obtener la broma', error);
+        }
+    });
+}
 function showButtons() {
     let mostrar = document.getElementById('scoreButtons');
     mostrar.innerHTML = `<div class="col-sm-12 col-md-7 col-xl-5 text-center">
@@ -93,4 +132,5 @@ function addScore(score) {
     };
     console.log(jokesReport);
 }
+getChuckJokes();
 getWeather('Barcelona');
