@@ -68,11 +68,8 @@ async function getJokes(){
         const data = await response.json();
         const joke = data.joke;
 
-        let broma:any = document.getElementById('joke');
-        broma.textContent = joke;
+        return joke;
 
-        showButtons();
-        addJoke(joke);
     } catch (error) {
         console.error('Error al obtener la broma', error);
     }
@@ -94,7 +91,8 @@ async function getChuckJokes(){
         const chuckJoke = data.value;
         console.log(chuckJoke);
 
-        addJoke(chuckJoke);
+        return chuckJoke;
+        // addJoke(chuckJoke);
 
     } catch (error) {
         console.error('Error al obtener la broma', error);
@@ -106,22 +104,24 @@ async function getRandomJokes(){
 
     try {
 
-        const dadJoke = await getJokes();
-        const chukNorrisJoke = await getChuckJokes();
+        const randomIndex = Math.floor(Math.random()*2);
+        let jokeToShow;
 
-        const jokesCombo = [dadJoke, chukNorrisJoke]
-
-        const rindex = Math.floor(Math.random() * jokesCombo.length);
-        const randomJoke = jokesCombo[rindex];
+        if(randomIndex === 0){
+            jokeToShow = await getJokes();
+        } else {
+            jokeToShow = await getChuckJokes();
+        }
     
         const jokeElement = document.getElementById('joke');
-        // jokeElement.textContent = randomJoke;
-        // const joke = data.joke;
-
-//         // let broma:any = document.getElementById('joke');
-//         // broma.textContent = joke;
-//         // showButtons();
-//         // addJoke(joke);
+        if(jokeElement){
+            jokeElement.textContent = jokeToShow;
+            showButtons();
+            addJoke(jokeToShow);           
+        } else {
+            console.error('Element not found');
+        }
+ 
     } catch (error) {
         console.error('Error al obtener la broma', error);
     }
