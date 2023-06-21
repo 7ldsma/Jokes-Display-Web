@@ -117,10 +117,12 @@ async function getRandomJokes(){
         if(jokeElement){
             jokeElement.textContent = jokeToShow;
             showButtons();
-            addJoke(jokeToShow);           
+            addJoke(jokeToShow);    
         } else {
             console.error('Element not found');
         }
+
+
  
     } catch (error) {
         console.error('Error al obtener la broma', error);
@@ -134,9 +136,9 @@ function showButtons(){
     let mostrar = document.getElementById('scoreButtons') as HTMLElement; 
     
     mostrar.innerHTML = `<div class="col-sm-12 col-md-7 col-xl-5 text-center">
-        <button class="btn btn-secondary" onclick="addScore(1)">1</button>
-        <button class="btn btn-secondary" onclick="addScore(2)">2</button>
-        <button class="btn btn-secondary" onclick="addScore(3)">3</button>
+        <img src='../src/media/mmm.png' onclick="addScore(1)" alt="confused icon">
+        <img src='../src/media/ok.png' onclick="addScore(2)" alt="ok icon">
+        <img src='../src/media/funny.png' onclick="addScore(3)" alt="funny icon">
         </div>`;
 
 }
@@ -169,9 +171,8 @@ function addScore(score:number){
     console.log(jokesReport);
 
 }
-getChuckJokes();
 
-getWeather('Barcelona');
+
 
 
 
@@ -183,21 +184,34 @@ var fondos = [
     '../src/media/fondo5.png'
 ];
 
-var background = document.body as HTMLDivElement;
-var currentIndex = 0;
+const cambioFo = document.querySelector('#fond');
+if (cambioFo){
+    cambioFo.addEventListener('click',changeBackground);
+}
+
+//     const boton = document.getElementById('fond') as HTMLButtonElement;
+//     const background:any = document.body as HTMLDivElement;
+//     let currentIndex = 0;
+
+//     boton.addEventListener("click",( )=> {
+//         boton.style.backgroundImage = `url(${background[currentIndex]})`;
+//         currentIndex = (currentIndex + 1) % fondos.length;
+
+//     });
 
 function changeBackground() {
+    const randomIndex = Math.floor(Math.random()* fondos.length);
+    const newBackground = fondos[randomIndex];
 
-    background.style.opacity = "0";
-
-    setTimeout(function() {
-        background.style.backgroundImage = "url(" + fondos[currentIndex] + ")";
-        currentIndex = (currentIndex + 1) % fondos.length;
-        
-        background.style.opacity = "1";
-    }, 500);
+    const divFondo = document.querySelector('#divFondo') as HTMLElement;
+    if (divFondo){
+        divFondo.style.backgroundImage = `url(${newBackground})`;
+   
+    }
 
 
 }
 
-setInterval(changeBackground, 3000);
+changeBackground();
+
+getWeather('Barcelona');

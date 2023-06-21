@@ -10,39 +10,39 @@
 </head>
 
 <body>
+    <div id="divFondo">
 
-    <div class="container" id="fondos">
-        <nav class="navbar navbar-expand-lg my-5 bg-white dflex justify-content-start bg-transparent">
+        <div class="container" id="fondos">
+            <nav class="navbar navbar-expand-lg my-5 bg-white dflex justify-content-start bg-transparent">
 
-            <h2 class="text-light" id="temperature"></h2>
-            <!-- <h4 id="mainWeather"></h4> -->
-            <h4 class="mx-4 text-light" id="descriptionWeather"></h4>
-        </nav>
+                <h2 class="text-light" id="temperature"></h2>
+                <!-- <h4 id="mainWeather"></h4> -->
+                <h4 class="mx-4 text-light" id="descriptionWeather"></h4>
+            </nav>
 
-        <!-- HERO SECTION -->
+            <!-- HERO SECTION -->
 
-        <section id="hero">
-            <div class="row justify-content-center align-items-end text-center" style="height: 350px">
-                <div class="col-sm-12 col-md-7 col-xl-6 align-items-center">
-                    <div class="p-5 rounded-4 bg-primary-subtle">
-                        <h3 id='joke'>Ready to laugh?</h3>
+            <section id="hero">
+                <div class="row justify-content-center align-items-end text-center" style="height: 350px">
+                    <div class="col-sm-12 col-md-7 col-xl-6 align-items-center">
+                        <div class="p-5 rounded-4 bg-primary-subtle">
+                            <h3 id='joke'>Ready to laugh?</h3>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row my-4 justify-content-center" id="scoreButtons">
+
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-sm-12 col-md-7 col-xl-5 text-center">
+                        <button class="btn btn-secondary" id="fond" onclick="getRandomJokes()">Next</button>
+
                     </div>
                 </div>
 
-            </div>
-            <div class="row my-4 justify-content-center" id="scoreButtons">
-
-            </div>
-            <div class="row justify-content-center">
-                <div class="col-sm-12 col-md-7 col-xl-5 text-center">
-                    <button class="btn btn-secondary" onclick="getRandomJokes()">Siguiente</button>
-
-                </div>
-            </div>
-
-        </section>
-
-
+            </section>
+        </div>
 
 
         <script src="../salida.js"></script>

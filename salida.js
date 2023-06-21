@@ -107,9 +107,9 @@ function getRandomJokes() {
 function showButtons() {
     let mostrar = document.getElementById('scoreButtons');
     mostrar.innerHTML = `<div class="col-sm-12 col-md-7 col-xl-5 text-center">
-        <button class="btn btn-secondary" onclick="addScore(1)">1</button>
-        <button class="btn btn-secondary" onclick="addScore(2)">2</button>
-        <button class="btn btn-secondary" onclick="addScore(3)">3</button>
+        <img src='../src/media/mmm.png' onclick="addScore(1)" alt="confused icon">
+        <img src='../src/media/ok.png' onclick="addScore(2)" alt="ok icon">
+        <img src='../src/media/funny.png' onclick="addScore(3)" alt="funny icon">
         </div>`;
 }
 function addJoke(joke) {
@@ -134,8 +134,6 @@ function addScore(score) {
     };
     console.log(jokesReport);
 }
-getChuckJokes();
-getWeather('Barcelona');
 var fondos = [
     '../src/media/fondo1.png',
     '../src/media/fondo2.png',
@@ -143,14 +141,24 @@ var fondos = [
     '../src/media/fondo4.png',
     '../src/media/fondo5.png'
 ];
-var background = document.body;
-var currentIndex = 0;
-function changeBackground() {
-    background.style.opacity = "0";
-    setTimeout(function () {
-        background.style.backgroundImage = "url(" + fondos[currentIndex] + ")";
-        currentIndex = (currentIndex + 1) % fondos.length;
-        background.style.opacity = "1";
-    }, 500);
+const cambioFo = document.querySelector('#fond');
+if (cambioFo) {
+    cambioFo.addEventListener('click', changeBackground);
 }
-setInterval(changeBackground, 3000);
+//     const boton = document.getElementById('fond') as HTMLButtonElement;
+//     const background:any = document.body as HTMLDivElement;
+//     let currentIndex = 0;
+//     boton.addEventListener("click",( )=> {
+//         boton.style.backgroundImage = `url(${background[currentIndex]})`;
+//         currentIndex = (currentIndex + 1) % fondos.length;
+//     });
+function changeBackground() {
+    const randomIndex = Math.floor(Math.random() * fondos.length);
+    const newBackground = fondos[randomIndex];
+    const divFondo = document.querySelector('#divFondo');
+    if (divFondo) {
+        divFondo.style.backgroundImage = `url(${newBackground})`;
+    }
+}
+changeBackground();
+getWeather('Barcelona');
